@@ -8,7 +8,6 @@ sequelize = new Sequelize(config.db)
 fs.readdirSync(__dirname).filter( (file) ->
   (file.indexOf(".") isnt 0) and (file != "index.coffee")
 ).forEach (file) ->
-	console.log(file)
 	model = sequelize.import(path.join(__dirname, file))
 	db[model.name] = model
 	return
