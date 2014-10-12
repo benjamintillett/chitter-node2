@@ -14,6 +14,10 @@ describe "home page", ->
 	before (done) ->
 		browser.visit("/",done)
 
+	before (done) ->
+   		db.User.sync({ force : true }) 
+   		done()
+
 	describe "A non signed in user", ->
 
 		it "displays a welcome message", ->
@@ -34,9 +38,14 @@ describe "home page", ->
 
 
 		it "a user can sign in again", ->
-			browser.pressButton("Sign Out").then ->
+			browser.clickLink("Sign In").then ->
+				browser.
 				fill("email", "zombie@underworld.dead").
 				fill("password", "eat-the-living").
+				pressButton("Sign in").then ->
+					expect(browser.text("h1")).to.eql('User')
+					expect(browser.text("h2")).to.eql('zombie@underworld.dead')
+
 
 
 

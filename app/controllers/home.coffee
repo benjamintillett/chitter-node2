@@ -35,6 +35,16 @@ router.post "/session_delete", (req, res, next) ->
   		title: 'Chitter Node',
   		user: null
 
+router.get "/sign_in", (req, res,next) ->
+  	res.render "sign_in",
+  		title: "Chiiter Node"
+
+router.post "/sessions", (req, res,next) ->
+	res.render "user",
+		title: "User",
+		user: null
+
+
 	
 
 current_user = (request, callback) ->
