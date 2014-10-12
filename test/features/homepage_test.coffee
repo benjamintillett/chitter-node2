@@ -14,14 +14,36 @@ describe "home page", ->
 	before (done) ->
 		browser.visit("/",done)
 
-	it "displays a welcome message", ->
-		
-		expect(browser.text("h1")).to.eql("Welcome to Chitter Node")
+	describe "A non signed in user", ->
 
-	it 'displays a sign up form', ->
-		browser.
-		fill("email", "zombie@underworld.dead").
-		fill("password", "eat-the-living").
-		pressButton("Sign Me Up!").then ->
-			expect(browser.text("h1")).to.eql('User')
-			expect(browser.text("h2")).to.eql('zombie@underworld.dead')
+		it "displays a welcome message", ->
+			
+			expect(browser.text("h1")).to.eql("Welcome to Chitter Node")
+
+		it 'A new user can sign up form', ->
+			browser.
+			fill("email", "zombie@underworld.dead").
+			fill("password", "eat-the-living").
+			pressButton("Sign Me Up!").then ->
+				expect(browser.text("h1")).to.eql('User')
+				expect(browser.text("h2")).to.eql('zombie@underworld.dead')
+
+		it "a user can sign out", ->
+			browser.pressButton("Sign Out").then ->
+				expect(browser.query(".user-email")).not.to.eql true
+
+
+		it "a user can sign in again", ->
+			browser.pressButton("Sign Out").then ->
+				fill("email", "zombie@underworld.dead").
+				fill("password", "eat-the-living").
+
+
+
+
+
+
+
+
+
+	

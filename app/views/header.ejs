@@ -8,3 +8,12 @@
   <script src="http://localhost:35729/livereload.js"></script>
 </head>
 <body>
+
+<% if (user) { %>	
+	<h3><%- user.email %><h3>
+	 <form action="session_delete" method="post"> 
+		<input type="submit" value="Sign Out">
+	</form>
+<% } else { %>
+	
+<% } %>

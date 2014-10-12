@@ -8,13 +8,14 @@ module.exports = (app) ->
 
 router.get '/', (req, res, next) ->
 
-  db.Article.findAll().success (articles) ->
+  current_user req, (user) ->
+
     res.render 'index',
       title: 'Chitter Node',
-      articles: articles
+      user: user
 
 router.post '/users', (req, res, next) ->
-	console.log req.body
+
 	user = db.User.create email: req.body.email, password: req.body.password
     	.complete (err) ->
     		if err
@@ -25,3 +26,18 @@ router.post '/users', (req, res, next) ->
     	.success (user) ->
     		req.session.user_id = user.id;
     		res.render 'user', title: 'User', user: user
+
+
+
+router.post "/session_delete", (req, res, next) ->
+	req.session.user_id = null
+	res.render 'index',
+  		title: 'Chitter Node',
+  		user: null
+
+	
+
+current_user = (request, callback) ->
+  db.User.find(request.session.user_id).success (user) ->
+    callback user
+    
