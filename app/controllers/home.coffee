@@ -40,9 +40,10 @@ router.get "/sign_in", (req, res,next) ->
   		title: "Chiiter Node"
 
 router.post "/sessions", (req, res,next) ->
-	res.render "user",
-		title: "User",
-		user: null
+	db.User.find({ where: { email: req.body.email } }).success (user) ->
+		res.render "user",
+			title: "User",
+			user: user
 
 
 	
