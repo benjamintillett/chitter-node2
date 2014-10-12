@@ -23,4 +23,5 @@ router.post '/users', (req, res, next) ->
     			console.log('We have a persisted instance now')
     			
     	.success (user) ->
+    		req.session.user_id = user.id;
     		res.render 'user', title: 'User', user: user

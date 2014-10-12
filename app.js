@@ -1,11 +1,17 @@
 require('coffee-script/register');
 
 express = require('express'),
-  config = require('./config/config'),
-  db = require('./app/models');
+config = require('./config/config'),
+db = require('./app/models');
+session = require('express-session')
 
 app = express();
 
+app.use(session({secret: 'keyboard cat', 
+                resave: true,
+                saveUninitialized: true
+}))
+    
 require('./config/express')(app, config);
 
 db.sequelize
