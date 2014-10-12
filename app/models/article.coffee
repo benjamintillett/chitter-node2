@@ -1,6 +1,3 @@
-# Example model
-
-
 module.exports = (sequelize, DataTypes) ->
 
   Article = sequelize.define 'Article',
@@ -9,4 +6,3 @@ module.exports = (sequelize, DataTypes) ->
     text: DataTypes.STRING
 
   return Article
-

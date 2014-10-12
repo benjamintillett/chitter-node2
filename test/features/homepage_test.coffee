@@ -17,3 +17,11 @@ describe "home page", ->
 	it "displays a welcome message", ->
 		
 		expect(browser.text("h1")).to.eql("Welcome to Chitter Node")
+
+	it 'displays a sign up form', ->
+		browser.
+		fill("email", "zombie@underworld.dead").
+		fill("password", "eat-the-living").
+		pressButton("Sign Me Up!").then ->
+			expect(browser.text("h1")).to.eql('User')
+			expect(browser.text("h2")).to.eql('zombie@underworld.dead')
