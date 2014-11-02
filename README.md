@@ -1,7 +1,9 @@
 Chitter Node
 ===========
 
-Building a twitter clone using node.js express, postgres, mocha and zombie
+Incomplete!!!
+
+Building a twitter clone using node.js express, postgres, mocha and zombie. Currently you can sign in and out As a user
 
 How to use
 ----------
